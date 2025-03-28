@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "retailshopapp.client", "retailshopapp.client\retailshopapp.client.esproj", "{0E2B5109-4A75-82C1-F3D3-47694E7B7365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetailShopAPP.Server", "RetailShopAPP.Server\RetailShopAPP.Server.csproj", "{B806F1F9-9B02-4B88-820E-C08EFCA8DB2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E2B5109-4A75-82C1-F3D3-47694E7B7365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E2B5109-4A75-82C1-F3D3-47694E7B7365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E2B5109-4A75-82C1-F3D3-47694E7B7365}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0E2B5109-4A75-82C1-F3D3-47694E7B7365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E2B5109-4A75-82C1-F3D3-47694E7B7365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E2B5109-4A75-82C1-F3D3-47694E7B7365}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B806F1F9-9B02-4B88-820E-C08EFCA8DB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B806F1F9-9B02-4B88-820E-C08EFCA8DB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B806F1F9-9B02-4B88-820E-C08EFCA8DB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B806F1F9-9B02-4B88-820E-C08EFCA8DB2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D6E1B89-9C91-4981-AF59-CC631E27F141}
+	EndGlobalSection
+EndGlobal
