@@ -24,7 +24,7 @@ namespace RetailShopAPP.Server.Controllers
             _context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBookDetail", new { id = invoice.Id }, invoice);
+            return CreatedAtAction("GetBookDetail", new { id = invoice.InvoiceId }, invoice);
         }
 
         [HttpGet]
