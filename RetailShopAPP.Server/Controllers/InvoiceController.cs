@@ -15,7 +15,7 @@ namespace RetailShopAPP.Server.Controllers
             _context = context;
         }
         [HttpPost]
-        public async Task<ActionResult<Invoice>> PostInvoice([FromBody]Invoice invoice)
+        public async Task<ActionResult<Invoice>> CreateInvoice([FromBody]Invoice invoice)
         {
             if (_context.Invoices == null)
             {
@@ -28,7 +28,7 @@ namespace RetailShopAPP.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Invoice>>>GetInvoiceDetails()
+        public async Task<ActionResult<IEnumerable<Invoice>>>GetInvoices()
         {
             if(_context.Invoices == null)
             {
