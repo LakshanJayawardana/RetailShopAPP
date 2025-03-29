@@ -32,6 +32,8 @@ export class AppComponent implements OnInit {
       }
     );
   }
+  handleFormSubmit() {
+  }
 
   title = 'retailshopapp.client';
 }
