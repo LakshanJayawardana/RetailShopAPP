@@ -8,11 +8,13 @@ import { InvoiceModel } from './invoice.model';
 export class InvoiceService {
   private url = 'https://localhost:7148/api/Invoice';
   invoice: InvoiceModel[] = [];
+  formData: InvoiceModel = new InvoiceModel();
   constructor(private http: HttpClient) { }
   getInvoice() {
     return this.http.get(this.url +"/GetInvoices");
   }
-  addInvoice(invoice: InvoiceModel) {
-    return this.http.post(this.url + "/AddInvoice", invoice);
+
+  addInvoice() {
+    return this.http.post(this.url + "/AddInvoice", this.formData);
   }
 }
