@@ -22,6 +22,10 @@ namespace RetailShopAPP.Server.Controllers
             {
                 return BadRequest("Invoice data is missing.");
             }
+            if (!invoice.IsValid())
+            {
+                return BadRequest("Invalid invoice data. The balance (totalAmount - discount) must be greater than zero.");
+            }
             _context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
 

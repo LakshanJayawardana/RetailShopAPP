@@ -9,5 +9,10 @@
         public decimal BalanceAmount { get; set; }
 
         public List<Product> Products { get; set; } = new();
+
+        public bool IsValid()
+        {
+            return TotalAmount - Discount > 0;
+        }
     }
 }
