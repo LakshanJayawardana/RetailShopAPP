@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InvoiceComponent,
+    InvoiceDetailComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule

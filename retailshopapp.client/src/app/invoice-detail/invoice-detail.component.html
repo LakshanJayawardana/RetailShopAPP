@@ -1,0 +1,12 @@
+<div *ngIf="invoice">
+  <h3>Invoice Details</h3>
+
+  <p><strong>Total Amount:</strong> {{ invoice.totalAmount }}</p>
+  <p><strong>Discount:</strong> {{ invoice.discount }}</p>
+  <p><strong>Balance Amount:</strong> {{ invoice.balanceAmount }}</p>
+  <p><strong>Transaction Date:</strong> {{ invoice.transactionDate }}</p>
+  <h2>Products</h2>
+  <div *ngFor="let product of invoice.products">
+    <p>{{ product.name }}</p>
+  </div>
+</div>

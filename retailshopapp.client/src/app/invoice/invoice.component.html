@@ -1,14 +1,19 @@
 <form #form="ngForm" (submit)="onSubmit(form)">
-  <label>Total Amount<input type="text" name="totalAmount" [(ngModel)]="formData.totalAmount" /></label>
+  <label>Total Amount<input type="text" name="totalAmount" [(ngModel)]="formData.totalAmount" readonly /></label>
   <label>Discount<input type="text" name="discount" [(ngModel)]="formData.discount" /></label>
+
+  <div>
+    <h3>Add Products</h3>
+    <label>Product Name<input type="text" [(ngModel)]="newProduct.name" name="productName" /></label>
+    <label>Price<input type="text" [(ngModel)]="newProduct.price" name="productPrice" (ngModelChange)="onProductChange()" /></label>
+    <label>Quantity<input type="text" [(ngModel)]="newProduct.quantity" name="productQuantity" (ngModelChange)="onProductChange()" /></label>
+    <button type="button" (click)="addProduct()">Add Product</button>
+  </div>
+  <div *ngFor="let product of formData.products; let i = index">
+    <p>{{ product.name }} - {{ product.price }} x {{ product.quantity }}</p>
+    <button type="button" (click)="removeProduct(i)">Remove</button>
+  </div>
   <button type="submit" [disabled]="!form.valid">Submit Invoice</button>
 </form>
+<app-invoice-detail [invoice]="recentInvoice" *ngIf ="submitted"></app-invoice-detail>
 
-<div *ngIf="submitted">
-  <h3>Invoice Details</h3>
-
-  <p><strong>Total Amount:</strong> {{ recentInvoice.totalAmount }}</p>
-  <p><strong>Discount:</strong> {{ recentInvoice.discount }}</p>
-  <p><strong>Balance Amount:</strong> {{ recentInvoice.balanceAmount }}</p>
-  <p><strong>Transaction Date:</strong> {{ recentInvoice.transactionDate }}</p>
-</div>

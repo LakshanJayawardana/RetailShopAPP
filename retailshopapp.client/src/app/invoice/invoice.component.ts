@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { InvoiceService } from '../shared/invoice.service';
 import { NgForm } from '@angular/forms';
-import { Invoice } from '../shared/invoice.model';
+import { Invoice, Product } from '../shared/invoice.model';
 
 @Component({
   selector: 'app-invoice',
@@ -13,6 +13,7 @@ export class InvoiceComponent {
   recentInvoice: Invoice = new Invoice();
   formData: Invoice = new Invoice();
   submitted: boolean = false;
+  newProduct: Product = new Product();
 
   constructor(private invoiceService: InvoiceService, private formBuilder: FormBuilder) { }
 
@@ -70,5 +71,22 @@ export class InvoiceComponent {
     if (form) {
       form.resetForm();
     }
+  }
+  addProduct() {
+    this.formData.products.push({ ...this.newProduct });
+    this.calculateTotalAmount();
+    this.newProduct = new Product();
+  }
+  removeProduct(index: number) {
+    this.formData.products.splice(index, 1);
+    this.calculateTotalAmount();
+  }
+  calculateTotalAmount() {
+    this.formData.totalAmount = this.formData.products.reduce((total, product) => {
+      return total + (product.price * product.quantity);
+    }, 0);
+  }
+  onProductChange() {
+    this.calculateTotalAmount();
   }
 }
