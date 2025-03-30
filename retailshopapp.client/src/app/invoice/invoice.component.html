@@ -1,4 +1,15 @@
 <form #form="ngForm" (submit)="onSubmit(form)">
-  <label>Amount<input type="text"/></label>
-  <button type="submit">Submit Invoice</button>
+  <label>Total Amount<input type="text" name="totalAmount" [(ngModel)]="formData.totalAmount" /></label>
+  <label>Discount<input type="text" name="discount" [(ngModel)]="formData.discount" /></label>
+  <label>Balance Amount<input type="text" name="balanceAmount" [(ngModel)]="formData.balanceAmount" /></label>
+  <label>Transaction Date<input type="datetime" name="transactionDate" [(ngModel)]="formData.transactionDate" /></label>
+  <button type="submit" [disabled]="!form.valid">Submit Invoice</button>
 </form>
+
+<div *ngIf="submitted">
+  <h3>Invoice Details</h3>
+  <p><strong>Transaction Date:</strong> {{ recentInvoice.transactionDate }}</p>
+  <p><strong>Total Amount:</strong> {{ recentInvoice.totalAmount }}</p>
+  <p><strong>Discount:</strong> {{ recentInvoice.discount }}</p>
+  <p><strong>Balance Amount:</strong> {{ recentInvoice.balanceAmount }}</p>
+</div>

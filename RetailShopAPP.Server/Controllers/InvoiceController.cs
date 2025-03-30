@@ -15,17 +15,17 @@ namespace RetailShopAPP.Server.Controllers
             _context = context;
         }
         [HttpPost]
-        [Route("CreateInvoice")]
-        public async Task<ActionResult<Invoice>> CreateInvoice([FromBody]Invoice invoice)
+        [Route("AddInvoice")]
+        public async Task<ActionResult<Invoice>> AddInvoice([FromBody]Invoice invoice)
         {
-            if (_context.Invoices == null)
+            if (invoice == null)
             {
-                return Problem("Entity set is null");
+                return BadRequest("Invoice data is missing.");
             }
             _context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBookDetail", new { id = invoice.InvoiceId }, invoice);
+            return CreatedAtAction("GetInvoices", new { id = invoice.InvoiceId }, invoice);
         }
 
         [HttpGet]

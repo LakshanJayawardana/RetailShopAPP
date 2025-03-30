@@ -9,7 +9,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 @NgModule({
   declarations: [
     AppComponent,
-    InvoiceComponent
+    InvoiceComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule
