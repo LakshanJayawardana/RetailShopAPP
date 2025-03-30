@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { InvoiceService } from '../shared/invoice.service';
 import { NgForm } from '@angular/forms';
-import { Invoice } from '../shared/invoice.model';
+import { Invoice, Product } from '../shared/invoice.model';
 
 @Component({
   selector: 'app-invoice',
@@ -10,23 +10,10 @@ import { Invoice } from '../shared/invoice.model';
   styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent {
-  recentInvoice: Invoice = {
-    invoiceId: 0,
-    transactionDate: new Date().toISOString(),
-    totalAmount: 0,
-    discount: 0,
-    balanceAmount: 0,
-    products: []
-  };;
-  formData: Invoice = {
-    invoiceId: 0,
-    transactionDate: new Date().toISOString(),
-    totalAmount: 0,
-    discount: 0,
-    balanceAmount: 0,
-    products: []
-  };
+  recentInvoice: Invoice = new Invoice();
+  formData: Invoice = new Invoice();
   submitted: boolean = false;
+  newProduct: Product = new Product();
 
   constructor(private invoiceService: InvoiceService, private formBuilder: FormBuilder) { }
 
@@ -37,7 +24,8 @@ export class InvoiceComponent {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      if (this.formData.totalAmount > 0) {
+      if (this.formData.isValid()) {
+        this.formData.balanceAmount = this.formData.calculateBalance();
         if (this.formData.invoiceId === 0) {
           this.submitted = true;
           this.insertRecord(form);
@@ -46,7 +34,7 @@ export class InvoiceComponent {
           this.updateRecord(form);
       }
       else {
-        alert("Please enter valid data");
+        alert("Invalid data. The balance (totalAmount - discount) must be greater than zero.");
       }
 
     }
@@ -57,7 +45,6 @@ export class InvoiceComponent {
       .subscribe({
         next: (res) => {
           this.recentInvoice = res as Invoice;
-          console.log('Submitted Invoice:', this.recentInvoice);
           this.resetForm(form);
         },
         error: err => {
@@ -84,5 +71,22 @@ export class InvoiceComponent {
     if (form) {
       form.resetForm();
     }
+  }
+  addProduct() {
+    this.formData.products.push({ ...this.newProduct });
+    this.calculateTotalAmount();
+    this.newProduct = new Product();
+  }
+  removeProduct(index: number) {
+    this.formData.products.splice(index, 1);
+    this.calculateTotalAmount();
+  }
+  calculateTotalAmount() {
+    this.formData.totalAmount = this.formData.products.reduce((total, product) => {
+      return total + (product.price * product.quantity);
+    }, 0);
+  }
+  onProductChange() {
+    this.calculateTotalAmount();
   }
 }
